@@ -1,8 +1,11 @@
-# Bài tập về bài toán Time-series trên bộ dữ liệu thời tiết được lấy từ kaggle với mục tiêu là dự đoán giá trị thời tiết của những ngày tiếp theo
-- Trong bài này mình sử dụng model mạng thần kinh với các layers LSTM và Dropout để hạn chế overfitting
-- Ngoài ra còn sử dụng thêm Bidirectional LSTM
-- Về lý thuyết thì LSTM mô hình thích hợp để sử dụng cho một chuỗi giá trị có thứ tự, nhưng hạn chế của nó là đối với dữ liệu quá dài thì phần sau nó không thể học tốt được
-- Bidirectional LSTM có thể giải quyết phần nào hạn chế này vì cơ chế của nó là học thứ từ từ đầu đến cuối và ngược lại từ cuối trở lên đầu nhưng những dữ liệu quá dài thì phần giữa sẽ gặp hạn chế (vì nó quá xa so với điểm xuất phát)
-- Ngày nay các mô hình sử dụng dữ liệu dạng chuỗi lớn tốt có thể kể đến như transformer và mình sẽ có một bài về lĩnh vực này sau
+# Sinh từ sử dụng model RNN (LSTM) với dữ liệu được lấy từ github
+(https://github.com/hoanganhpham1006/Vietnamese_Language_Model/blob/master/Train_Full.zip)
 
- 
+- Trong bài này mình sẽ tạo ra 3 file code chính
+    - preprocess.ipynb -> dùng để tiền xử lý dữ liệu như đọc data, làm sạch rồi lưu lại thành file train.txt cho quá trình tiếp theo
+    - LSTM-Text_Generation-Model.ipynb -> lấy dữ liệu từ train.txt, tự định nghĩa tokenizer từ dữ liệu đầu vào, dựa vào cấu trúc dữ liệu ra trích xuất ra các đặc trưng và nhãn rồi tạo model và huấn luyện model
+    - implement-Text_Generation.ipynb -> dùng tokenizer và model đã được huấn luyện từ trước và định nghĩa các hàm sinh văn bản
+- Model sẽ nhận đầu vào với shape là (, 50), và trả về đầu ra là (,vocab_size)
+- Đầu ra giống với categorical ra sử dụng hàm kích hoạt là softmax để lấy phân phối xác xuất cao nhất cho 1 từ bằng argmax của numpy
+- Hiện nay ngoài RNN ra thì còn rất nhiều các model khác dùng để sinh từ và phải kể đến hiện đại nhất hiện nay là công nghệ GPT
+Note: thứ tự chạy các file: preprocess.ipynb -> LSTM-Text_Generation-Model.ipynb -> implement-Text_Generation.ipynb
